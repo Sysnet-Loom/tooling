@@ -61,7 +61,6 @@ def read_mesh(ser):
 
     # process 1 - send meshdiag topology request
     send_str = "meshdiag topology ip6-addrs children"
-    print("Get mesh info cmd: ", send_str)
     encode_and_send(send_str, ser)
 
     # process2 - listen
@@ -92,7 +91,7 @@ def get_mesh_data(ser):
             break
     
     meshdiag_iter = meshdiag_start_index
-    while mesh_data[meshdiag_iter] != 'Done':
+    while meshdiag_iter < len(mesh_data) and mesh_data[meshdiag_iter] != 'Done':
         # do something to process data here
         output_data.append(mesh_data[meshdiag_iter])
         meshdiag_iter += 1
